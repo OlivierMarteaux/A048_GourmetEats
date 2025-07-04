@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cas_1"
-        android:textSize="40sp"/>
+        android:textSize="40sp" />
 
 
     <LinearLayout
@@ -26,14 +26,17 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/demo_product_name"
-            android:textSize="60px"
+            android:textSize="24sp"
             android:layout_weight="1"/>
 
         <ImageButton
             android:id="@+id/removeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minWidth="48.dp"
+            android:minHeight="48.dp"
             android:src="@drawable/ic_remove"
+            android:contentDescription="@string/supprimer_un_produit_du_panier"
             />
 
         <TextView
@@ -41,16 +44,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="0"
-            android:textSize="60px"
+            android:textSize="24sp"
             android:layout_margin="20dp"
-            android:textColor="@color/gray400"/>
+            android:textColor="@color/black"/>
 
         <ImageButton
             android:id="@+id/addButton"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minWidth="48.dp"
+            android:minHeight="48.dp"
             android:src="@drawable/ic_add"
+            android:contentDescription="@string/ajouter_un_produit_au_panier"
             />
 
 

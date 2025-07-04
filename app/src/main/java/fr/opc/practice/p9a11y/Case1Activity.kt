@@ -16,15 +16,21 @@ class Case1Activity : AppCompatActivity() {
         var quantity = 0
 
         binding.quantityText.text = "$quantity"
+        binding.quantityText.contentDescription = getString(R.string.produits_dans_le_panier, quantity)
+
         binding.addButton.setOnClickListener {
             quantity++
+            binding.addButton.announceForAccessibility(getString(R.string.un_produit_ajout_le_panier_contient_maintenant_produit, quantity))
             binding.quantityText.text = "$quantity"
+            binding.quantityText.contentDescription = getString(R.string.produits_dans_le_panier, quantity)
         }
 
         binding.removeButton.setOnClickListener {
             if (quantity > 0) {
                 quantity--
+                binding.removeButton.announceForAccessibility(getString(R.string.un_produit_supprim_le_panier_contient_maintenant_produit, quantity))
                 binding.quantityText.text = "$quantity"
+                binding.quantityText.contentDescription = getString(R.string.produits_dans_le_panier, quantity)
             } else {
                 Toast.makeText(this, getString(R.string.impossible_d_avoir_une_quantit_n_gative), Toast.LENGTH_SHORT)
                     .show()
