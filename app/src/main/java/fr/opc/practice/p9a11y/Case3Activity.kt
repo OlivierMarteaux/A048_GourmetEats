@@ -3,6 +3,7 @@ package fr.opc.practice.p9a11y
 import android.content.res.ColorStateList
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
 import fr.opc.practice.p9a11y.databinding.ActivityCase3Binding
 
@@ -17,11 +18,26 @@ class Case3Activity : AppCompatActivity() {
 
         binding.pseudoEdit.doOnTextChanged { text, _, _, _ ->
             text?.length?.let { textLength ->
-                binding.validateButton.isEnabled = textLength > 2
-                binding.pseudoEdit.backgroundTintList = if (textLength > 2) {
-                    ColorStateList.valueOf(resources.getColor(R.color.green400, theme))
-                } else {
-                    ColorStateList.valueOf(resources.getColor(R.color.red400, theme))
+//                binding.validateButton.isEnabled = textLength > 2
+//                binding.pseudoEdit.backgroundTintList = if (textLength > 2) {
+//                    ColorStateList.valueOf(resources.getColor(R.color.green400, theme))
+//                } else {
+//                    ColorStateList.valueOf(resources.getColor(R.color.red400, theme))
+//                }
+                val isValid = textLength > 2
+                with(binding){
+                    validateButton.isEnabled = isValid
+                    pseudoEdit.apply{ 
+                        if (isValid){
+                            backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.green400, theme))
+                            setTextColor(ContextCompat.getColor(this@Case3Activity, R.color.black))
+                            error = null
+                        } else {
+                            backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.red400, theme))
+                            setTextColor(ContextCompat.getColor(this@Case3Activity, R.color.red400))
+                            error = context.getString(R.string.pseudo_error_message)
+                        }
+                    }
                 }
             }
         }

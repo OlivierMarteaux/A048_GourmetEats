@@ -1,9 +1,12 @@
 package fr.opc.practice.p9a11y
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.AccessibilityDelegateCompat
 import androidx.core.view.ViewCompat
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
 import fr.opc.practice.p9a11y.databinding.ActivityCase2Binding
 
 class Case2Activity : AppCompatActivity() {
@@ -17,9 +20,17 @@ class Case2Activity : AppCompatActivity() {
 
         var isFavourite = false
         setFavouriteButtonIcon(isFavourite)
-        binding.favouriteButton.setOnClickListener {
+
+        fun toggleFavourite() {
             isFavourite = !isFavourite
             setFavouriteButtonIcon(isFavourite)
+            if (isFavourite) {
+                binding.recipeCard.announceForAccessibility(getString(R.string.recette_ajout_e_aux_favoris))
+            } else {binding.recipeCard.announceForAccessibility(getString(R.string.recette_supprim_e_des_favoris))}
+        }
+
+        binding.favouriteButton.setOnClickListener {
+            toggleFavourite()
         }
 
         ViewCompat.addAccessibilityAction(
@@ -27,15 +38,13 @@ class Case2Activity : AppCompatActivity() {
             binding.recipeCard,
             // Label surfaced to user by an accessibility service
             getText(R.string.cd_ajouter_aux_favoris),
-        ) { _, _ ->
-            // Same method executed when swiping on itemView
-            isFavourite = !isFavourite
-            setFavouriteButtonIcon(isFavourite)
-            if (isFavourite) {
-                binding.recipeCard.announceForAccessibility(getString(R.string.recette_ajout_e_aux_favoris))
-            } else {binding.recipeCard.announceForAccessibility(getString(R.string.recette_supprim_e_des_favoris))}
-            true
-        }
+            ({
+                _, _ ->
+                // Action to perform when the accessibility action is triggered
+                toggleFavourite()
+                true
+            })
+        )
 
         binding.addRecipeToBasket.setOnClickListener {
             Toast.makeText(this, getString(R.string.recette_ajout_au_panier), Toast.LENGTH_SHORT)
