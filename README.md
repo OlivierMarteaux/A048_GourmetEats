@@ -1,4 +1,4 @@
-# A048_GournetEats 
+# A048_GourmetEats 
   
 **OpenClassroom training:**  
 Projet 9 - Exercice - Rendre une UI accessible en suivant un sprint  
