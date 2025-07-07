@@ -22,5 +22,8 @@
     <string name="ajouter_la_recette_au_panier">Ajouter la recette au panier</string>
     <string name="recette_ajout_e_aux_favoris">Recette ajoutée aux favoris</string>
     <string name="recette_supprim_e_des_favoris">Recette supprimée des favoris</string>
+    <string name="pseudo_valide">Ce pseudonyme est valide</string>
+    <string name="pseudo_non_valide">Ce pseudonyme n\'est pas valide</string>
+    <string name="pseudo_error_message">Le pseudo doit contenir au moins 3 caractères</string>
 
 </resources>
